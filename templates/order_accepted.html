@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Order Accepted{% endblock %}
+
+{% block page_content %}
+<div class="w3-container">
+    <hr>
+    <div class="w3-center">
+        <h2><b>Thank you for your order. Here's your receipt:</b></h2>
+    </div>
+</div>
+
+{% if order_food_length > 0 %}
+<div class="w3-container">
+    <hr>
+    <div class="w3-center">
+        <h3>Food</h3>
+    </div>
+    <div class="w3-responsive w3-card-4">
+        <table class="w3-table w3-striped w3-bordered">
+            <thead>
+                <tr class="w3-theme">
+                    <th>No</th>
+                    <th>Menu</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(order_food_length) %}
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ order["food"]["itemfood"][i] }}</td>
+                    <td>{{ order["food"]["qfood"][i] }}</td>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endif %}
+
+<div class="w3-container">
+    <hr>
+    {% if order_drinks_length > 0 %}
+    <div class="w3-center">
+        <h3>Drink</h3>
+    </div>
+    <div class="w3-responsive w3-card-4">
+        <table class="w3-table w3-striped w3-bordered">
+            <thead>
+                <tr class="w3-theme">
+                    <th>No</th>
+                    <th>Menu</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(order_drinks_length) %}
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ order["drinks"]["itemdrink"][i] }}</td>
+                    <td>{{ order["drinks"]["qdrink"][i] }}</td>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    <div class="w3-responsive w3-card-4">
+        <table class="w3-table w3-striped w3-bordered">
+            <tbody>
+                <tr>
+                    <td colspan="3">
+                        <a href="/" style="text-decoration: none;">
+                            <button class="w3-btn w3-block w3-xlarge w3-dark-grey w3-hover-light-grey">Go to dashboard</button>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+    <hr>
+    <hr>
+</div>
+
+{% endblock %}

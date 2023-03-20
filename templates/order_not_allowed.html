@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+
+{% block page_title %}Order Not Allowed{% endblock %}
+
+{% block page_content %}
+
+<div class="w3-container">
+    <div class="w3-center">
+        <h1>This table (Table {{ table_id }}) is not available for ordering right now.</h1>
+        <h3>Please ask a waiter to prepare this table.</h3>
+        <hr>
+        <a href="/" style="text-decoration: none;"><button class="w3-btn w3-block w3-xlarge w3-dark-grey w3-hover-light-grey"">Go to dashboard</button></a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block page_title %}New Order{% endblock %}
+
+{% block page_content %}
+
+<form action="/order/{{ table_id }}" method="POST">
+    <div class="w3-container">
+        <hr>
+        <div class="w3-center">
+            <h1 style="color: #d60000; font-weight: 700;">New Order for Table {{ table_id }}</h1>
+            <h2><b>Pick your menu</b></h2>
+            <h3>Food</h3>
+        </div>
+        <div class="w3-responsive w3-card-4">
+            <table class="w3-table w3-striped w3-bordered">
+                <thead>
+                    <tr class="w3-theme">
+                        <th>No</th>
+                        <th>Menu</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index, f in food %}
+                    <tr>
+                        <td>{{ index + 1 }}</td>
+                        <td>{{ f }}</td>
+                        <td><input name="f{{ index }}" type="number" min="0" placeholder="0">
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="w3-container">
+        <hr>
+        <div class="w3-center">
+            <h3>Drink</h3>
+        </div>
+        <div class="w3-responsive w3-card-4">
+            <table class="w3-table w3-striped w3-bordered">
+                <thead>
+                    <tr class="w3-theme">
+                        <th>No</th>
+                        <th>Menu</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index, drink in drinks %}
+                    <tr>
+                        <td>{{ index + 1 }}</td>
+                        <td>{{ drink }}</td>
+                        <td><input name="d{{ index }}" type="number" min="0" placeholder="0">
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="w3-responsive w3-card-4">
+            <table class="w3-table w3-striped w3-bordered">
+                <tbody>
+                    <tr>
+                      <td colspan="3">
+                         <button class="w3-btn w3-block w3-xlarge w3-dark-grey w3-hover-light-grey" type="submit">Place Order</button>
+                      </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>   
+    <hr>   
+    <hr>   
+</form>
+
+{% endblock %}

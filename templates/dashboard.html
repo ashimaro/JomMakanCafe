@@ -1,0 +1,115 @@
+{% extends 'base.html' %} 
+
+{% block page_title %}Dashboard{% endblock %}
+
+{% block page_content %}
+<div class="w3-row-padding w3-center w3-margin-top">
+	{% for table in tables.values() %}
+	<div class="w3-third">
+		<div class="w3-card w3-container" style="min-height: 260px;">
+			<h3>Table {{ table.table }}<br><small>{{ table.status }}</small></h3><br>
+            {% if table["food"]["itemfood"]|count > 0 %}
+                <p><b>Food</b>
+                    {% for i in range(table["food"]["itemfood"]|count) %}
+                    <br>{{ table["food"]["qfood"][i] }} x {{ table["food"]["itemfood"][i] }}
+                    {% endfor %}
+                </p>
+            {% endif %}
+            {% if table["drinks"]["itemdrink"]|count > 0 %}
+                <p><b>Drinks</b>
+                    {% for i in range(table["drinks"]["itemdrink"]|count) %}
+                    <br>{{ table["drinks"]["qdrink"][i] }} x {{ table["drinks"]["itemdrink"][i] }}
+                    {% endfor %}
+                </p>
+            {% endif %}
+            {% if table.time|length > 0 %}
+                <p><b>Date/Time</b><br>{{ table.time }}</p>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<hr>
+
+<!-- Footer -->
+<footer class="w3-container w3-theme-dark w3-padding-16">
+    <h3>IOT Final Project</h3>
+    <p>Prepared by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">ASHWINI</a></p>
+    <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
+        <span class="w3-text w3-theme-light w3-padding">Go To Top</span> 
+        <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
+                <i class="fa fa-chevron-circle-up"></i></span></a>
+    </div>
+</footer>
+
+<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
+<script>
+    // Side navigation
+    function w3_open() {
+        var x = document.getElementById("mySidebar");
+        x.style.width = "100%";
+        x.style.fontSize = "40px";
+        x.style.paddingTop = "10%";
+        x.style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+
+    // Tabs
+    function openCity(evt, cityName) {
+        var i;
+        var x = document.getElementsByClassName("city");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        var activebtn = document.getElementsByClassName("testbtn");
+        for (i = 0; i < x.length; i++) {
+            activebtn[i].className = activebtn[i].className.replace(" w3-dark-grey", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " w3-dark-grey";
+    }
+
+    var mybtn = document.getElementsByClassName("testbtn")[0];
+    mybtn.click();
+
+    // Accordions
+    function myAccFunc(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+
+    // Slideshows
+    var slideIndex = 1;
+
+    function plusDivs(n) {
+        slideIndex = slideIndex + n;
+        showDivs(slideIndex);
+    }
+
+    function showDivs(n) {
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = x.length
+        };
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+    }
+
+    showDivs(1);
+
+</script>
+
+{% endblock %}
